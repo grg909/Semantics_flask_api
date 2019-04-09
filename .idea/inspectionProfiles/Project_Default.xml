@@ -1,0 +1,32 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="19">
+            <item index="0" class="java.lang.String" itemvalue="Bottleneck" />
+            <item index="1" class="java.lang.String" itemvalue="xlwt" />
+            <item index="2" class="java.lang.String" itemvalue="pycosat" />
+            <item index="3" class="java.lang.String" itemvalue="mkl-random" />
+            <item index="4" class="java.lang.String" itemvalue="bitarray" />
+            <item index="5" class="java.lang.String" itemvalue="importlib-metadata" />
+            <item index="6" class="java.lang.String" itemvalue="pycrypto" />
+            <item index="7" class="java.lang.String" itemvalue="mkl-fft" />
+            <item index="8" class="java.lang.String" itemvalue="fastcache" />
+            <item index="9" class="java.lang.String" itemvalue="blaze" />
+            <item index="10" class="java.lang.String" itemvalue="cytoolz" />
+            <item index="11" class="java.lang.String" itemvalue="ruamel-yaml" />
+            <item index="12" class="java.lang.String" itemvalue="odo" />
+            <item index="13" class="java.lang.String" itemvalue="datashape" />
+            <item index="14" class="java.lang.String" itemvalue="numexpr" />
+            <item index="15" class="java.lang.String" itemvalue="Werkzeug" />
+            <item index="16" class="java.lang.String" itemvalue="pkg-resources" />
+            <item index="17" class="java.lang.String" itemvalue="numpy" />
+            <item index="18" class="java.lang.String" itemvalue="PyMySQL" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

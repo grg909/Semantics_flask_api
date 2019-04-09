@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>input</title>
+</head>
+<body>
+
+<style>#jz {
+    margin: 0 auto;
+    width: 320px;
+    height: 100px;
+}</style>
+<div id="jz">
+    <form action="{{ url_for('input_page') }}" method="post">
+
+        <p>word_threshold: <input type="text" name="word_threshold" value="9" min="1" required
+                                  onkeyup="this.value=this.value.replace(/\D/g,'')"/></p>
+        <p>class_threshold: <input type="text" name="class_threshold" value="10" min="1" required
+                                   onkeyup="this.value=this.value.replace(/\D/g,'')"/></p>
+
+        <select name="ac_id">
+            {% for id,title in activity.items() %}
+
+                <option value="{{ id }}">{{ title }}</option>
+            
+            {% endfor %}
+            
+            <option value="volvo">Volvo</option>
+            
+        </select>
+
+        <input type="submit" value="Submit"/>
+
+    </form>
+</div>
+
+</body>
+</html>
