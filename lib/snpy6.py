@@ -36,6 +36,7 @@ class GraphJson:
         self.description_column = description_column
         self._repeat_class_word = set()
         self._class_name = []
+        self._uncleaned_word_list = []
 
     def _iter_segment(self, flags):
         """
@@ -83,12 +84,18 @@ class GraphJson:
                 stopwords_line = stopwords.split('\n')
         except Exception:
             print('请确保停用词库在正确目录下')
-            exit()
 
         with_class_data = []
         for seg in self._iter_segment(seg_flags):
             for seg_rm in self._iter_remove_stopwords(seg, stopwords_line):
                 with_class_data.append(seg_rm)
+
+        with open('record1.txt', 'a', encoding='utf-8') as s:
+            for line in with_class_data:
+                for word in line:
+                    s.write(word)
+                    s.write(' ')
+                s.write('\n')
 
         return with_class_data
 
@@ -99,10 +106,25 @@ class GraphJson:
         :return: 清洗后的类别列表
         """
         class_cleaned = {class_name: count for class_name, count in collections.Counter(self.data[self.class_column]).items() if count > int(class_threshold)}
+
+        try:
+            max_count = max(class_cleaned.values())
+            min_count = min(class_cleaned.values())
+        except Exception:
+            print('类别数据为空')
+            raise
+
+        try:
+            for class_name, count in class_cleaned.items():
+                class_cleaned[class_name] = 100*(0.3+((float(count)-min_count)/float(max_count-min_count)))
+        except Exception:
+            print('类别数据标准化出错')
+            raise
+
+        print(class_cleaned)
         return class_cleaned
 
-    @staticmethod
-    def _word_clean(with_class_list, word_threshold):
+    def _word_clean(self, with_class_list, word_threshold):
         """
         统计分词词频并筛选满足阈值的类别。
         :param with_class_list: 描述分词和去停用词后得到的字符串列表
@@ -112,9 +134,23 @@ class GraphJson:
         without_class_list = []
         for line in with_class_list:
             without_class_list.append(line[1:])
+        self._uncleaned_word_list = list(itertools.chain(*without_class_list))
 
-        data = list(itertools.chain(*without_class_list))
-        word_pool = {word: count for word, count in collections.Counter(data).items() if count > int(word_threshold)}
+        word_pool = {word: count for word, count in collections.Counter(self._uncleaned_word_list).items() if count > int(word_threshold)}
+
+        try:
+            max_count = max(word_pool.values())
+            min_count = min(word_pool.values())
+        except Exception:
+            print('分词数据为空')
+
+        try:
+            for word_name, count in word_pool.items():
+                word_pool[word_name] = 30*(0.1+((float(count)-min_count)/float(max_count-min_count)))
+        except Exception:
+            print('分词数据标准化出错')
+
+        print(word_pool)
         return word_pool
 
     def gen_total_dict(self, with_class_list, word_threshold, class_threshold):
@@ -128,11 +164,13 @@ class GraphJson:
         class_dict = self._class_clean(class_threshold)
         word_dict = self._word_clean(with_class_list, word_threshold)
 
-        class_set = set(class_dict.keys())
-        word_set = set(word_dict.keys())
+        # 获取类别和分词中的相同名称列表，对应分词中用‘_'分隔每个字进行重命名，避免冲突
+        class_set = set(self.data[self.class_column])
+        word_set = set(self._uncleaned_word_list)
         self._repeat_class_word = class_set & word_set
         for repeat_name in self._repeat_class_word:
-            word_dict['_'.join(repeat_name)] = word_dict.pop(repeat_name)
+            if repeat_name in word_dict:
+                word_dict['_'.join(repeat_name)] = word_dict.pop(repeat_name)
 
         self._class_name = class_dict.keys()
         total_dict = {**word_dict, **class_dict}
@@ -147,7 +185,9 @@ class GraphJson:
         """
 
         total_word = total_dict.keys()
-        class_word_pool = {class_name: set() for class_name in self._class_name}
+        class_word_pool = {}
+        for class_name in self._class_name:
+            class_word_pool.setdefault(class_name, set())
 
         for line in with_class_list:
             if line[0] in self._class_name:
@@ -160,19 +200,33 @@ class GraphJson:
 
         return class_word_pool
 
-    def _normalize(self, x, scale):
+    def _normalize_class(self, x, scale):
         """
         对词频进行标准化，使其具有相同的尺度([0,1]区间)
         :param x:
         :param scale: 数据标准差
         :return:
         """
-        if scale < 30:
-            return 5*(2 ^ x)
-        if scale > 150:
-            return x / math.log(10*x)
-        else:
-            return math.atan(x)*2/math.pi
+        # if scale < 30:
+        #     return 5*(2 ^ x)
+        # if scale > 150:
+        #     return x / math.log(10*x)
+        # else:
+        return [(float(i)-min(x))/float(max(x)-min(x)) for i in x]
+
+    def _normalize_word(self, x, scale):
+        """
+        对词频进行标准化，使其具有相同的尺度([0,1]区间)
+        :param x:
+        :param scale: 数据标准差
+        :return:
+        """
+        # if scale < 30:
+        #     return 5*(2 ^ x)
+        # if scale > 150:
+        #     return x / math.log(10*x)
+        # else:
+        return [(float(i)-min(x))/float(max(x)-min(x)) for i in x]
 
     def export_json(self, class_word_pool, total_dict):
         """
@@ -186,7 +240,7 @@ class GraphJson:
         print('标准值：', scale)
 
         graph_nodes = total_dict.keys()  # node名称list
-        graph_nodes_sizes = list(map(lambda x: self._normalize(x, scale), total_dict.values()))
+        graph_nodes_sizes = total_dict.values()
         graph_edge = [(class_name, word) for class_name, word_set in class_word_pool.items() for word in word_set]
 
         colors = [name for name, hexe in matplotlib.colors.cnames.items()]
@@ -194,11 +248,10 @@ class GraphJson:
         G = nx.Graph()
         G.add_nodes_from(graph_nodes, size=graph_nodes_sizes)
         G.add_edges_from(graph_edge)
-        pos = nx.spring_layout(G, scale=10, iterations=5)
+        pos = nx.spring_layout(G, k=0.7, scale=10, iterations=50)
 
         dict_node = {'nodes': [], 'edges': []}
         for node, size in total_dict.items():
-            size = self._normalize(size, scale)
             ran = np.random.randint(0, len(colors))
             dict_node['nodes'].append(
                 {'id': node, 'color': colors_json[ran], 'size': size, 'x': pos[node][0] * 1000, 'y': pos[node][1] * 1000})

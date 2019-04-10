@@ -2,30 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d4e4bf0-c741-4271-bc0d-2d2a7a4a6abb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/semnetwork.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/fy_icon.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/snpy4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/snpy5.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/snpy6.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stopwords.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/stopwords_biaodian.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/分词with_class.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/新版本word频次.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/老版本word频次.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/sem_network.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/collection_index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/navigation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/snpy6.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/snpy6.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/collection_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/collection_index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/snpy5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+            <state relative-caret-position="270">
+              <caret line="103" column="55" selection-start-line="103" selection-start-column="27" selection-end-line="103" selection-end-column="55" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -64,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/snpy6.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="198" column="46" lean-forward="true" selection-start-line="198" selection-start-column="46" selection-end-line="198" selection-end-column="46" />
+            <state relative-caret-position="378">
+              <caret line="251" selection-start-line="251" selection-end-line="251" />
               <folding>
                 <element signature="e#143#162#0" expanded="true" />
               </folding>
@@ -74,10 +52,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/ProgramData/Anaconda3/Lib/selectors.py">
+        <entry file="file://$PROJECT_DIR$/templates/collection_index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6369">
-              <caret line="314" selection-start-line="314" selection-end-line="314" />
+            <state relative-caret-position="374">
+              <caret line="19" column="66" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="207">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -112,6 +93,10 @@
       <find>with_class_data</find>
       <find>with_class_list</find>
       <find>word</find>
+      <find>canvas</find>
+      <find>print</find>
+      <find>total</find>
+      <find>_class_name</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,14 +109,14 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/templates/navigation.html" />
-        <option value="$PROJECT_DIR$/templates/collection_index.html" />
         <option value="$PROJECT_DIR$/lib/snpy5.py" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/templates/collection_index.html" />
         <option value="$PROJECT_DIR$/lib/snpy6.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="260" />
     <option name="y" value="166" />
     <option name="width" value="1440" />
@@ -142,7 +127,30 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="semnetwork" type="b2602c69:ProjectViewProjectNode" />
+              <item name="semnetwork" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="semnetwork" type="b2602c69:ProjectViewProjectNode" />
+              <item name="semnetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="semnetwork" type="b2602c69:ProjectViewProjectNode" />
+              <item name="semnetwork" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -232,11 +240,12 @@
       <workItem from="1554692336362" duration="26815000" />
       <workItem from="1554720913237" duration="408000" />
       <workItem from="1554776300004" duration="22628000" />
+      <workItem from="1554863015499" duration="13188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178153000" />
+    <option name="totallyTimeSpent" value="191341000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -248,7 +257,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2249467" />
@@ -256,7 +265,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.31330472" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.31330472" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.35193133" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -264,7 +273,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32939914" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.35193133" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.31330472" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.2167382" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.17167382" />
       <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="0" sideWeight="0.5032189" side_tool="true" weight="0.21321961" />
@@ -307,7 +316,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lib/snpy6.py</url>
-          <line>245</line>
+          <line>298</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -315,11 +324,16 @@
           <line>201</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/lib/snpy6.py</url>
+          <line>200</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1554803412406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1554876642587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/0__init__.py" />
@@ -375,13 +389,6 @@
     <entry file="file://$PROJECT_DIR$/lib/snpy4.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/collection_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="16" column="96" lean-forward="true" selection-start-line="16" selection-start-column="96" selection-end-line="16" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../FlaskApp/venv/Lib/site-packages/jieba/posseg/prob_emit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -429,27 +436,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/ProgramData/Anaconda3/Lib/selectors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8343">
+          <caret line="314" selection-start-line="314" selection-end-line="314" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="207">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/ProgramData/Anaconda3/Lib/selectors.py">
+    <entry file="file://$PROJECT_DIR$/templates/collection_index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6369">
-          <caret line="314" selection-start-line="314" selection-end-line="314" />
+        <state relative-caret-position="374">
+          <caret line="19" column="66" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/snpy5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+        <state relative-caret-position="270">
+          <caret line="103" column="55" selection-start-line="103" selection-start-column="27" selection-end-line="103" selection-end-column="55" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -458,8 +475,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/snpy6.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="198" column="46" lean-forward="true" selection-start-line="198" selection-start-column="46" selection-end-line="198" selection-end-column="46" />
+        <state relative-caret-position="378">
+          <caret line="251" selection-start-line="251" selection-end-line="251" />
           <folding>
             <element signature="e#143#162#0" expanded="true" />
           </folding>
