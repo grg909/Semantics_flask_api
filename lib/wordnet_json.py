@@ -1,28 +1,26 @@
 # coding: utf-8
 
-# @Time    : 2019/04/02
+# @Time    : 2019/04/11
 # @Author  : WANG JINGE
 # @Site    :
-# @File    : snpy6.py
+# @File    : wordnet_json.py
 # @Software: PyCharm
 """
     此类用于文本分析
 """
 
-import pandas as pd
-import networkx as nx
-import matplotlib
-import collections
-import numpy as np
-import json
+from collections import Counter
+from itertools import chain
+from json import dumps
+
 import jieba
-import jieba.posseg as pseg
-import math
-import itertools
-import time
+import matplotlib
+import networkx as nx
+from jieba import posseg as pseg
+from numpy import random
 
 
-class GraphJson:
+class WordnetJson:
 
     def __init__(self, data, class_column, description_column):
         """
@@ -46,16 +44,18 @@ class GraphJson:
         """
         try:
             flags[0]
-        except Exception:
+        except Exception as e:
             print('请输入分词保留的flags列表')
-            exit()
+            raise e
 
         # jieba.enable_parallel()
 
         for row in self.data.itertuples(index=False):
             seg_list = []
             description_seg = pseg.cut(row[1].replace('\r\n', ''))
-            words_seg = [word for word, flag in description_seg if flag in flags and word != row[0]]
+            words_seg = [
+                word for word,
+                flag in description_seg if flag in flags and word != row[0]]
             seg_list.append(row[0])
             seg_list.extend(words_seg)
             yield seg_list
@@ -68,7 +68,8 @@ class GraphJson:
         :param stopwords_line: 停用词列表
         :return: 返回一个可以输出每行无停用词结果（字符串）的迭代器
         """
-        without_stopwords = [word for word in seg_list if word not in stopwords_line]
+        without_stopwords = [
+            word for word in seg_list if word not in stopwords_line]
         yield without_stopwords
 
     def seg_and_rm_stopwords(self, seg_flags, stopwords_relative_pos):
@@ -82,20 +83,14 @@ class GraphJson:
             with open(stopwords_relative_pos, encoding='utf-8') as sp:
                 stopwords = sp.read()
                 stopwords_line = stopwords.split('\n')
-        except Exception:
+        except Exception as e:
             print('请确保停用词库在正确目录下')
+            raise e
 
         with_class_data = []
         for seg in self._iter_segment(seg_flags):
             for seg_rm in self._iter_remove_stopwords(seg, stopwords_line):
                 with_class_data.append(seg_rm)
-
-        with open('record1.txt', 'a', encoding='utf-8') as s:
-            for line in with_class_data:
-                for word in line:
-                    s.write(word)
-                    s.write(' ')
-                s.write('\n')
 
         return with_class_data
 
@@ -105,23 +100,24 @@ class GraphJson:
         :param class_threshold: 类别频率阈值
         :return: 清洗后的类别列表
         """
-        class_cleaned = {class_name: count for class_name, count in collections.Counter(self.data[self.class_column]).items() if count > int(class_threshold)}
+        class_cleaned = {class_name: count for class_name, count in Counter(
+            self.data[self.class_column]).items() if count > int(class_threshold)}
 
         try:
             max_count = max(class_cleaned.values())
             min_count = min(class_cleaned.values())
-        except Exception:
+        except Exception as e:
             print('类别数据为空')
-            raise
+            raise e
 
         try:
             for class_name, count in class_cleaned.items():
-                class_cleaned[class_name] = 100*(0.3+((float(count)-min_count)/float(max_count-min_count)))
-        except Exception:
+                class_cleaned[class_name] = 100 * \
+                    (0.3 + ((float(count) - min_count) / float(max_count - min_count)))
+        except Exception as ex:
             print('类别数据标准化出错')
-            raise
+            raise ex
 
-        print(class_cleaned)
         return class_cleaned
 
     def _word_clean(self, with_class_list, word_threshold):
@@ -134,23 +130,26 @@ class GraphJson:
         without_class_list = []
         for line in with_class_list:
             without_class_list.append(line[1:])
-        self._uncleaned_word_list = list(itertools.chain(*without_class_list))
+        self._uncleaned_word_list = list(chain(*without_class_list))
 
-        word_pool = {word: count for word, count in collections.Counter(self._uncleaned_word_list).items() if count > int(word_threshold)}
+        word_pool = {word: count for word, count in Counter(
+            self._uncleaned_word_list).items() if count > int(word_threshold)}
 
         try:
             max_count = max(word_pool.values())
             min_count = min(word_pool.values())
-        except Exception:
+        except Exception as e :
             print('分词数据为空')
+            raise e
 
         try:
             for word_name, count in word_pool.items():
-                word_pool[word_name] = 30*(0.1+((float(count)-min_count)/float(max_count-min_count)))
-        except Exception:
+                word_pool[word_name] = 30 * \
+                    (0.1 + ((float(count) - min_count) / float(max_count - min_count)))
+        except Exception as ex:
             print('分词数据标准化出错')
+            raise ex
 
-        print(word_pool)
         return word_pool
 
     def gen_total_dict(self, with_class_list, word_threshold, class_threshold):
@@ -174,6 +173,7 @@ class GraphJson:
 
         self._class_name = class_dict.keys()
         total_dict = {**word_dict, **class_dict}
+
         return total_dict
 
     def gen_class_word_pool(self, with_class_list, total_dict):
@@ -200,33 +200,27 @@ class GraphJson:
 
         return class_word_pool
 
-    def _normalize_class(self, x, scale):
+    @staticmethod
+    def _parameter_calculation(scale, class_num):
         """
-        对词频进行标准化，使其具有相同的尺度([0,1]区间)
-        :param x:
-        :param scale: 数据标准差
-        :return:
+        根据数据量计算networkx.spring_layout函数的参数
+        :param scale: 总的数据量
+        :param class_num: 类别的数量
+        :return: spring_layout参数k，iteration
         """
-        # if scale < 30:
-        #     return 5*(2 ^ x)
-        # if scale > 150:
-        #     return x / math.log(10*x)
-        # else:
-        return [(float(i)-min(x))/float(max(x)-min(x)) for i in x]
+        if scale < 30:
+            k_cal = 0.2
+        elif scale > 100:
+            k_cal = 0.2 + scale / 333
+        else:
+            k_cal = 0.1 + scale / 285
 
-    def _normalize_word(self, x, scale):
-        """
-        对词频进行标准化，使其具有相同的尺度([0,1]区间)
-        :param x:
-        :param scale: 数据标准差
-        :return:
-        """
-        # if scale < 30:
-        #     return 5*(2 ^ x)
-        # if scale > 150:
-        #     return x / math.log(10*x)
-        # else:
-        return [(float(i)-min(x))/float(max(x)-min(x)) for i in x]
+        if class_num <= 5:
+            iter_cal = 50
+        else:
+            iter_cal = 5
+
+        return k_cal, iter_cal
 
     def export_json(self, class_word_pool, total_dict):
         """
@@ -235,72 +229,33 @@ class GraphJson:
         :param total_dict: 所有词的词频字典
         :return: 图数据的json格式
         """
-        value_data = np.array(list(total_dict.values()))
-        scale = value_data.std()
-        print('标准值：', scale)
-
         graph_nodes = total_dict.keys()  # node名称list
         graph_nodes_sizes = total_dict.values()
-        graph_edge = [(class_name, word) for class_name, word_set in class_word_pool.items() for word in word_set]
+        graph_edge = [(class_name, word) for class_name,
+                      word_set in class_word_pool.items() for word in word_set]
 
         colors = [name for name, hexe in matplotlib.colors.cnames.items()]
         colors_json = [hexe for name, hexe in matplotlib.colors.cnames.items()]
         G = nx.Graph()
         G.add_nodes_from(graph_nodes, size=graph_nodes_sizes)
         G.add_edges_from(graph_edge)
-        pos = nx.spring_layout(G, k=0.7, scale=10, iterations=50)
+
+        # 根据数据量计算制图参数
+        scale = len(total_dict)
+        class_num = len(class_word_pool.keys())
+        k_cal, iter_cal = self._parameter_calculation(scale, class_num)
+        pos = nx.spring_layout(G, k=k_cal, iterations=iter_cal)
 
         dict_node = {'nodes': [], 'edges': []}
         for node, size in total_dict.items():
-            ran = np.random.randint(0, len(colors))
-            dict_node['nodes'].append(
-                {'id': node, 'color': colors_json[ran], 'size': size, 'x': pos[node][0] * 1000, 'y': pos[node][1] * 1000})
+            ran = random.randint(0, len(colors))
+            dict_node['nodes'].append({'id': node,
+                                       'color': colors_json[ran],
+                                       'size': size,
+                                       'x': pos[node][0] * 1000,
+                                       'y': pos[node][1] * 1000})
         for t in graph_edge:
             dict_node['edges'].append({'from': t[0], 'to': t[1], 'size': 1})
-        node_json = json.dumps(dict_node, ensure_ascii=False)
+        node_json = dumps(dict_node, ensure_ascii=False)
 
         return node_json
-
-
-def process(data, word_threshold, class_threshold):
-
-    start = time.time()
-
-    # 将data放入设计的数据结构
-    list_data = np.array(data)
-    data = pd.DataFrame(list_data, columns=['icontitle', 'description'])
-
-    # 列表每项首个单词为对应类别，用‘ ’连接
-    gj = GraphJson(data, class_column='icontitle', description_column='description')
-    with_class_list = gj.seg_and_rm_stopwords(seg_flags=['n', 'a'], stopwords_relative_pos='lib/stopwords_biaodian.txt')
-
-    end1 = time.time()
-    excape1 = end1-start
-    print('IO花费的时间：', excape1)
-
-    # 数据清洗，根据输入阈值过滤类别和分词，去除重复。（class空值如何处理）
-    total_dict = gj.gen_total_dict(with_class_list=with_class_list, word_threshold=word_threshold, class_threshold=class_threshold)
-
-    # 类与对应出现过的词列表的字典，用于图edge的生成
-    class_word_pool = gj.gen_class_word_pool(with_class_list, total_dict)
-
-    end2 = time.time()
-    excape2 = end2-end1
-    print('清洗花费的时间：', excape2)
-
-    # 输出图的json数据
-    graph_json = gj.export_json(class_word_pool, total_dict)
-
-    end3 = time.time()
-    excape3 = end3-end2
-    print('制图花费的时间：', excape3)
-    print('总时间：', end3-start)
-
-    return graph_json
-
-
-
-
-
-
-

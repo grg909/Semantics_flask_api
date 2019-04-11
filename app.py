@@ -1,8 +1,10 @@
 from flask import render_template, request
 import pymysql
 import json
-from .lib import snpy6
+from .lib.wordnet_json import WordnetJson
 from . import app
+import numpy as np
+import pandas as pd
 
 
 class MysqlConn:
@@ -36,9 +38,25 @@ def get_json():
 
     data = MysqlConn.perform(sql=sql)
     word_threshold, class_threshold = word_threshold, class_threshold
-    jsons = snpy6.process(data = data, word_threshold = word_threshold, class_threshold =class_threshold)
 
-    return json.dumps(jsons)
+    # 将data放入设计的数据结构
+    list_data = np.array(data)
+    data = pd.DataFrame(list_data, columns=['icontitle', 'description'])
+
+    # 列表每项首个单词为对应类别，用‘ ’连接
+    wj = WordnetJson(data, class_column='icontitle', description_column='description')
+    with_class_list = wj.seg_and_rm_stopwords(seg_flags=['n', 'a'], stopwords_relative_pos='lib/stopwords_biaodian.txt')
+
+    # 数据清洗，根据输入阈值过滤类别和分词，去除重复。
+    total_dict = wj.gen_total_dict(with_class_list, word_threshold, class_threshold)
+
+    # 类与对应出现过的词列表的字典，用于图edge的生成
+    class_word_pool = wj.gen_class_word_pool(with_class_list, total_dict)
+
+    # 输出图的json数据
+    graph_json = wj.export_json(class_word_pool, total_dict)
+
+    return json.dumps(graph_json)
 
 
 @app.route('/index', methods=['POST', 'GET'])
