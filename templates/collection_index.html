@@ -53,7 +53,7 @@
                                     }
                                 };
                             }),
-                            edges: json.edges.map(function (edge) {
+                            links: json.edges.map(function (edge) {
                                 return {
                                     source: edge.from,
                                     target: edge.to
@@ -75,14 +75,14 @@
                             lineStyle: {
                                 normal: {
                                     width: 0.5,
-                                    curveness: 0.2,
+                                    curveness: 0.3,
                                     opacity: 0.7
                                 }
                             }
                         }
                     ]
                 }, true);
-            });;
+            });
             if (option && typeof option === "object") {
                 myChart.setOption(option, true);
             }

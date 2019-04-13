@@ -17,7 +17,7 @@ import jieba
 import matplotlib
 import networkx as nx
 from jieba import posseg as pseg
-from numpy import random
+import numpy as np
 
 
 class WordnetJson:
@@ -94,14 +94,59 @@ class WordnetJson:
 
         return with_class_data
 
-    def _class_clean(self, class_threshold):
+    @staticmethod
+    def word_threshold_calculation(word_count):
+        """
+        计算分词的默认阈值参数
+        :param word_count:
+        :return:
+        """
+        word_count_list = list(word_count.values())
+        word_count_array = np.array(word_count_list)
+        std = np.std(word_count_array)
+        if std < 30:
+            word_threshold = np.percentile(word_count_array, 80)
+        else:
+            word_threshold = np.percentile(word_count_array, 95)
+
+        print('word_threshold: ', word_threshold)
+        return word_threshold
+
+    @staticmethod
+    def class_threshold_calculation(class_count):
+        """
+        计算分词的默认阈值参数
+        :param class_count:
+        :return:
+        """
+        class_count_list = list(class_count.values())
+        word_count_array = np.array(class_count_list)
+        std = np.std(word_count_array)
+        if std < 500:
+            class_threshold = np.percentile(word_count_array, 30)
+        else:
+            class_threshold = np.percentile(word_count_array, 60)
+
+        print('class_threshold: ', class_threshold)
+        return class_threshold
+
+    def _class_clean(self, class_threshold=None):
         """
         去重以及筛选满足阈值的类别
         :param class_threshold: 类别频率阈值
         :return: 清洗后的类别列表
         """
-        class_cleaned = {class_name: count for class_name, count in Counter(
-            self.data[self.class_column]).items() if count > int(class_threshold)}
+        if class_threshold is None:
+            class_count = {class_name: count for class_name, count in Counter(
+                self.data[self.class_column]).items()}
+            # 计算默认的类别词阈值
+            class_threshold = self.class_threshold_calculation(class_count)
+            class_cleaned = {
+                word: count for word,
+                count in class_count.items() if count > int(class_threshold)}
+        else:
+            class_cleaned = {class_name: count for class_name, count in Counter(
+                self.data[self.class_column]).items() if count > int(class_threshold)}
 
         try:
             max_count = max(class_cleaned.values())
@@ -120,7 +165,7 @@ class WordnetJson:
 
         return class_cleaned
 
-    def _word_clean(self, with_class_list, word_threshold):
+    def _word_clean(self, with_class_list, word_threshold=None):
         """
         统计分词词频并筛选满足阈值的类别。
         :param with_class_list: 描述分词和去停用词后得到的字符串列表
@@ -132,13 +177,22 @@ class WordnetJson:
             without_class_list.append(line[1:])
         self._uncleaned_word_list = list(chain(*without_class_list))
 
-        word_pool = {word: count for word, count in Counter(
-            self._uncleaned_word_list).items() if count > int(word_threshold)}
+        if word_threshold is None:
+            word_count = {word: count for word, count in Counter(
+                self._uncleaned_word_list).items()}
+            # 计算默认的分词阈值
+            word_threshold = self.word_threshold_calculation(word_count)
+            word_pool = {
+                word: count for word,
+                count in word_count.items() if count > int(word_threshold)}
+        else:
+            word_pool = {word: count for word, count in Counter(
+                self._uncleaned_word_list).items() if count > int(word_threshold)}
 
         try:
             max_count = max(word_pool.values())
             min_count = min(word_pool.values())
-        except Exception as e :
+        except Exception as e:
             print('分词数据为空')
             raise e
 
@@ -152,9 +206,13 @@ class WordnetJson:
 
         return word_pool
 
-    def gen_total_dict(self, with_class_list, word_threshold, class_threshold):
+    def gen_total_dict(
+            self,
+            with_class_list,
+            word_threshold=None,
+            class_threshold=None):
         """
-        生成所有出现词的词频字典，若分词中出现和别的类别相同名称，则用‘_'分隔每个字重命名
+        生成所有词的词频字典（描述分词和类别词），若当前类别分词中出现和其他类别相同的名称，则分词中的用‘_'分隔重命名
         :param with_class_list: 描述分词和去停用词后得到的字符串列表
         :param word_threshold: 分词频率阈值
         :param class_threshold: 类别频率阈值
@@ -183,7 +241,6 @@ class WordnetJson:
         :param total_dict: 所有出现词的词频字典
         :return: 类与对应出现过的词列表的字典
         """
-
         total_word = total_dict.keys()
         class_word_pool = {}
         for class_name in self._class_name:
@@ -204,7 +261,7 @@ class WordnetJson:
     def _parameter_calculation(scale, class_num):
         """
         根据数据量计算networkx.spring_layout函数的参数
-        :param scale: 总的数据量
+        :param scale: 总的单词量
         :param class_num: 类别的数量
         :return: spring_layout参数k，iteration
         """
@@ -248,7 +305,7 @@ class WordnetJson:
 
         dict_node = {'nodes': [], 'edges': []}
         for node, size in total_dict.items():
-            ran = random.randint(0, len(colors))
+            ran = np.random.randint(0, len(colors))
             dict_node['nodes'].append({'id': node,
                                        'color': colors_json[ran],
                                        'size': size,

@@ -48,7 +48,7 @@ def get_json():
     with_class_list = wj.seg_and_rm_stopwords(seg_flags=['n', 'a'], stopwords_relative_pos='lib/stopwords_biaodian.txt')
 
     # 数据清洗，根据输入阈值过滤类别和分词，去除重复。
-    total_dict = wj.gen_total_dict(with_class_list, word_threshold, class_threshold)
+    total_dict = wj.gen_total_dict(with_class_list)
 
     # 类与对应出现过的词列表的字典，用于图edge的生成
     class_word_pool = wj.gen_class_word_pool(with_class_list, total_dict)
