@@ -44,7 +44,7 @@ def get_json():
     data = pd.DataFrame(list_data, columns=['icontitle', 'description'])
 
     # 列表每项首个单词为对应类别，用‘ ’连接
-    wj = WordnetJson(data, class_column='icontitle', description_column='description')
+    wj = WordnetJson(data, class_column='icontitle', description_column='description', keywords_list=['建议'])
     with_class_list = wj.seg_and_rm_stopwords(seg_flags=['n', 'a'], stopwords_relative_pos='lib/stopwords_biaodian.txt')
 
     # 数据清洗，根据输入阈值过滤类别和分词，去除重复。
@@ -54,7 +54,7 @@ def get_json():
     class_word_pool = wj.gen_class_word_pool(with_class_list, total_dict)
 
     # 输出图的json数据
-    graph_json = wj.export_json(class_word_pool, total_dict)
+    graph_json = wj.gen_export_json(class_word_pool, total_dict)
 
     return json.dumps(graph_json)
 
