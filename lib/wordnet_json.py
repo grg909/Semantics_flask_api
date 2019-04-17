@@ -23,7 +23,12 @@ import numpy as np
 
 class WordnetJson:
 
-    def __init__(self, data, class_column, description_column, keywords_list=None):
+    def __init__(
+            self,
+            data,
+            class_column,
+            description_column,
+            keywords_list=None):
         """
         传入dataframe
         :param data: 数据pandas.dataframe, 有两列，第一列类别，第二列描述
@@ -48,7 +53,7 @@ class WordnetJson:
         self.__repeat_class_word = set()
         self.__class_name = []
         self.__uncleaned_word_list = []
-        self.__keywords_existed =[]
+        self.__keywords_existed = []
         self.__keywords_dict = {}
         self.__keywords_nor = {}
 
@@ -156,8 +161,8 @@ class WordnetJson:
 
         try:
             for class_name, count in class_cleaned.items():
-                class_cleaned[class_name] = self.class_nor_coefficient * \
-                    (self.class_nor_offset + ((float(count) - min_count) / float(max_count - min_count)))
+                class_cleaned[class_name] = self.class_nor_coefficient * (
+                    self.class_nor_offset + ((float(count) - min_count) / float(max_count - min_count)))
         except Exception as ex:
             print('类别数据标准化出错')
             raise ex
@@ -179,8 +184,8 @@ class WordnetJson:
 
         try:
             for word_name, count in word_pool.items():
-                word_pool[word_name] = self.word_nor_coefficient * \
-                    (self.word_nor_offset + ((float(count) - min_count) / float(max_count - min_count)))
+                word_pool[word_name] = self.word_nor_coefficient * (self.word_nor_offset + (
+                    (float(count) - min_count) / float(max_count - min_count)))
         except Exception as ex:
             print('分词数据标准化出错')
             raise ex
@@ -224,17 +229,18 @@ class WordnetJson:
         if word_threshold is None:
             word_count = {word: count for word, count in Counter(
                 self.__uncleaned_word_list).items()}
-
             # 计算默认的分词阈值
             word_threshold = self.__word_threshold_calculation(word_count)
             word_pool_cal = {
                 word: count for word,
                 count in word_count.items() if count > int(word_threshold)}
-
             # 为了保证默认出图的视觉效果，仅保留词频排序前110个分词
-            word_pool_limited = sorted(word_pool_cal.items(), key=lambda t: t[1], reverse=True)[:self.word_limitation]
+            word_pool_limited = sorted(
+                word_pool_cal.items(),
+                key=lambda t: t[1],
+                reverse=True)[
+                :self.word_limitation]
             word_pool = dict(word_pool_limited)
-
         else:
             word_pool = {word: count for word, count in Counter(
                 self.__uncleaned_word_list).items() if count > int(word_threshold)}
@@ -289,7 +295,8 @@ class WordnetJson:
         :return: 类与对应出现过的词列表的字典
         """
         total_word = total_dict.keys()
-        class_word_pool = {class_name: set() for class_name in self.__class_name}
+        class_word_pool = {class_name: set()
+                           for class_name in self.__class_name}
 
         for line in with_class_list:
             if line[0] in self.__class_name:
@@ -326,12 +333,12 @@ class WordnetJson:
 
         return k_cal, iter_cal
 
-    def gen_export_json(self, class_word_pool, total_dict):
+    def export_json(self, class_word_pool, total_dict):
         """
-        输出图数据的json格式
+        输出生成图的json数据
         :param class_word_pool: 类与对应出现过的词列表的字典
         :param total_dict: 所有词的词频字典
-        :return: 图数据的json格式
+        :return: 生成图的json数据
         """
         graph_nodes = total_dict.keys()  # node名称list
         graph_nodes_sizes = total_dict.values()
@@ -350,7 +357,11 @@ class WordnetJson:
         fixed_class_nodes = list(graph_nodes)[-class_num:]
         fixed_nodes = list(chain(fixed_class_nodes, self.__keywords_existed))
         k_cal, iter_cal = self.__parameter_calculation(scale, class_num)
-        pos = nx.spring_layout(G, k=k_cal, fixed=fixed_nodes, iterations=iter_cal)
+        pos = nx.spring_layout(
+            G,
+            k=k_cal,
+            fixed=fixed_nodes,
+            iterations=iter_cal)
 
         dict_node = {'nodes': [], 'edges': []}
         for node, size in total_dict.items():
@@ -362,6 +373,35 @@ class WordnetJson:
                                        'y': pos[node][1] * 1000})
         for t in graph_edge:
             dict_node['edges'].append({'from': t[0], 'to': t[1], 'size': 1})
-        node_json = dumps(dict_node, ensure_ascii=False)
+        graph_json = dumps(dict_node, ensure_ascii=False)
 
-        return node_json
+        return graph_json
+
+    def gen_wordnet_json(
+            self,
+            seg_flags,
+            stopwords_relative_pos,
+            word_threshold=None,
+            class_threshold=None):
+        """
+        实现数据处理到最终输出json的总接口函数
+        :param seg_flags: 指定保留的分词flags列表
+        :param stopwords_relative_pos: 停用词相对路径位置
+        :param word_threshold: 分词频率阈值
+        :param class_threshold: 类别频率阈值
+        :return: 生成图的json数据
+        """
+        with_class_list = self.seg_and_rm_stopwords(
+            seg_flags, stopwords_relative_pos)
+
+        # 数据清洗，根据输入阈值过滤类别和分词，去除重复。
+        total_dict = self.gen_total_dict(
+            with_class_list, word_threshold, class_threshold)
+
+        # 类与对应出现过的词列表的字典，用于图edge的生成
+        class_word_pool = self.gen_class_word_pool(with_class_list, total_dict)
+
+        # 输出图的json数据
+        graph_json = self.export_json(class_word_pool, total_dict)
+
+        return graph_json
