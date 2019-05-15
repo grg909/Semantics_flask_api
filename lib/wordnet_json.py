@@ -17,6 +17,7 @@ import matplotlib
 import networkx as nx
 from jieba import posseg as pseg
 import numpy as np
+import csv
 
 # TODO ： 1. 容错机制 2. 可读性 3. 性能优化
 
@@ -234,6 +235,7 @@ class WordnetJson:
             word_pool_cal = {
                 word: count for word,
                 count in word_count.items() if count > int(word_threshold)}
+
             # 为了保证默认出图的视觉效果，仅保留词频排序前110个分词
             word_pool_limited = sorted(
                 word_pool_cal.items(),
@@ -256,6 +258,7 @@ class WordnetJson:
                 for keywords in self.__keywords_existed:
                     if word_pool_nor[keywords] < self.class_nor_offset:
                         word_pool_nor[keywords] += self.class_nor_offset
+
 
         return word_pool_nor
 
@@ -405,3 +408,15 @@ class WordnetJson:
         graph_json = self.export_json(class_word_pool, total_dict)
 
         return graph_json
+
+    def dict_to_csv(self, dict_data):
+        """
+
+        :param dict:
+        :return:
+        """
+        with open('record.csv', 'wb', newline='') as f:
+            w = csv.writer(f)
+            w.writerows(dict_data.items())
+
+

@@ -31,6 +31,7 @@ def get_json():
     class_threshold = request.args.get('class_threshold')
     word_threshold = request.args.get('word_threshold')
     ac_id = request.args.get('ac_id')
+    print(ac_id)
 
     sql = "SELECT fy_icon.icontitle, fy_proposal.description FROM fy_proposal LEFT JOIN fy_icon on " \
           "fy_proposal.icon_id = fy_icon.id WHERE fy_proposal.activity_id = {} AND fy_proposal.status = 1 and " \
