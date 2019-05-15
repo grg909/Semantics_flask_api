@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d4e4bf0-c741-4271-bc0d-2d2a7a4a6abb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/semnetwork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/semnetwork.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/wordnet_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/wordnet_json.py" afterDir="false" />
@@ -33,10 +31,19 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/wordnet_json.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2637">
-              <caret line="305" column="16" lean-forward="true" selection-start-line="305" selection-start-column="16" selection-end-line="305" selection-end-column="16" />
+            <state relative-caret-position="433">
+              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
               <folding>
-                <element signature="e#150#181#0" expanded="true" />
+                <element signature="e#0#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,10 +53,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>with_class_data</find>
-      <find>with_class_list</find>
-      <find>word</find>
-      <find>canvas</find>
       <find>total</find>
       <find>_class_name</find>
       <find>collections</find>
@@ -70,12 +73,16 @@
       <find>__</find>
       <find>p</find>
       <find>chain</find>
-      <find>print</find>
       <find>des_list</find>
       <find>name_list</find>
       <find>word_limitatio</find>
       <find>csv</find>
       <find>羊排</find>
+      <find>seg_and_rm_stopwords</find>
+      <find>with_class_list</find>
+      <find>pool</find>
+      <find>class_word_pool</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -112,7 +119,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -134,6 +140,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,11 +287,12 @@
       <workItem from="1555833338314" duration="840000" />
       <workItem from="1556177561194" duration="67000" />
       <workItem from="1557892489318" duration="3447000" />
+      <workItem from="1557904878233" duration="4492000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="282752000" />
+    <option name="totallyTimeSpent" value="287244000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -299,12 +307,12 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.124200426" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12526652" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.4495708" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.6180258" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.35193133" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -362,7 +370,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1557894902359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1557909259824" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/0__init__.py" />
@@ -524,8 +532,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+        <state relative-caret-position="117">
+          <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
@@ -534,11 +542,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/wordnet_json.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2637">
-          <caret line="305" column="16" lean-forward="true" selection-start-line="305" selection-start-column="16" selection-end-line="305" selection-end-column="16" />
-          <folding>
-            <element signature="e#150#181#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="433">
+          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>

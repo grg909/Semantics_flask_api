@@ -17,6 +17,7 @@ import matplotlib
 import networkx as nx
 from jieba import posseg as pseg
 import numpy as np
+import pickle
 import csv
 
 # TODO ： 1. 容错机制 2. 可读性 3. 性能优化
@@ -64,12 +65,6 @@ class WordnetJson:
         :param flags: 指定保留的分词flags列表
         :return: 返回一个可以输出每行分词结果（字符串）的迭代器
         """
-        try:
-            flags[0]
-        except Exception as e:
-            print('请输入分词保留的flags列表')
-            raise e
-
         for row in self.data.itertuples(index=False):
             seg_list = []
             description_seg = pseg.cut(row[1].replace('\r\n', ''))
@@ -88,9 +83,9 @@ class WordnetJson:
         :param stopwords_line: 停用词列表
         :return: 返回一个可以输出每行无停用词结果（字符串）的迭代器
         """
-        without_stopwords = [
-            word for word in seg_list if word not in stopwords_line]
-        yield without_stopwords
+        for word in seg_list:
+            if word not in stopwords_line:
+                yield word
 
     def seg_and_rm_stopwords(self, seg_flags, stopwords_relative_pos):
         """
@@ -108,9 +103,10 @@ class WordnetJson:
             raise e
 
         with_class_data = []
-        for seg in self.__iter_segment(seg_flags):
-            for seg_rm in self.__iter_remove_stopwords(seg, stopwords_line):
-                with_class_data.append(seg_rm)
+        seg_list = self.__iter_segment(seg_flags)
+        seg_rm = self.__iter_remove_stopwords(seg_list, stopwords_line)
+        for line in seg_rm:
+            with_class_data.append(line)
 
         return with_class_data
 
