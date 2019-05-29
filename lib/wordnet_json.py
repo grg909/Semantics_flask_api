@@ -19,6 +19,7 @@ from jieba import posseg as pseg
 import numpy as np
 import csv
 import jieba
+import pickle
 
 # TODO ： 1. 容错机制 2. 可读性 3. 性能优化
 
@@ -34,6 +35,7 @@ class WordnetJson:
     def __init__(
             self,
             data,
+            data_name,
             class_column,
             description_column,
             keywords_list=None):
@@ -45,6 +47,7 @@ class WordnetJson:
         :param keywords_list: 用户自定义的需提高识别度（node大小权重）的关键词list
         """
         self.data = data
+        self.data_name = data_name
         self.class_column = class_column
         self.description_column = description_column
         self.keywords_list = keywords_list
@@ -93,7 +96,7 @@ class WordnetJson:
             if word not in stopwords_line:
                 yield word
 
-    def seg_and_rm_stopwords(self, seg_flags, stopwords_relative_pos):
+    def seg_and_rm_stopwords(self, seg_flags, stopwords_relative_pos, enable_pickle=True):
         """
         分词和去除停用词
         :param seg_flags: 指定保留的分词flags列表
@@ -112,6 +115,9 @@ class WordnetJson:
         seg_list = self._iter_segment(seg_flags)
         for seg in seg_list:
             with_class_data.append([i for i in self._remove_stopwords(seg, stopwords_line)])
+
+        if enable_pickle:
+            pickle.dump(with_class_data, open('data/{}.pkl'.format(self.data_name), 'wb'))
 
         return with_class_data
 
@@ -395,8 +401,11 @@ class WordnetJson:
         :param class_threshold: 类别频率阈值
         :return: 生成图的json数据
         """
-        with_class_list = self.seg_and_rm_stopwords(
-            seg_flags, stopwords_relative_pos)
+        try:
+            with_class_list = pickle.load(open('data/{}.pkl'.format(self.data_name), "rb"))
+        except:
+            with_class_list = self.seg_and_rm_stopwords(
+                seg_flags, stopwords_relative_pos)
 
         # 数据清洗，根据输入阈值过滤类别和分词，去除重复。
         total_dict = self.gen_total_dict(

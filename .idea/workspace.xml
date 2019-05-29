@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4d4e4bf0-c741-4271-bc0d-2d2a7a4a6abb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wordnet_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/wordnet_json.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/wordnet_json.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1566">
-              <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+            <state relative-caret-position="-3024">
+              <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
               <folding>
                 <element signature="e#150#181#0" expanded="true" />
               </folding>
@@ -38,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-131">
-              <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+            <state relative-caret-position="238">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -109,7 +110,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1057" />
@@ -292,11 +293,12 @@
       <workItem from="1558080860203" duration="2295000" />
       <workItem from="1559099231286" duration="285000" />
       <workItem from="1559099633697" duration="26000" />
+      <workItem from="1559099739789" duration="993000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289850000" />
+    <option name="totallyTimeSpent" value="290843000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -309,8 +311,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12846482" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12953092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -373,7 +376,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1559099484301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1559100542211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/0__init__.py" />
@@ -533,11 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Industry_type_classifier/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Industry_type_classifier/app2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-738">
@@ -552,22 +550,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/wordnet_json.py">
+    <entry file="file://$PROJECT_DIR$/../Industry_type_classifier/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1566">
-          <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
-          <folding>
-            <element signature="e#150#181#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="495">
+          <caret line="205" lean-forward="true" selection-start-line="205" selection-end-line="205" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-131">
-          <caret line="38" column="37" lean-forward="true" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+        <state relative-caret-position="238">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/wordnet_json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3024">
+          <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
+          <folding>
+            <element signature="e#150#181#0" expanded="true" />
           </folding>
         </state>
       </provider>

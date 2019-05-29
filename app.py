@@ -37,13 +37,12 @@ def get_json():
           "fy_proposal.delete_status = 0 ;".format(ac_id)
 
     data = MysqlConn.perform(sql=sql)
-    word_threshold, class_threshold = word_threshold, class_threshold
 
     # 将data放入设计的数据结构
     list_data = np.array(data)
     data = pd.DataFrame(list_data, columns=['icontitle', 'description'])
 
-    wj = WordnetJson(data, class_column='icontitle', description_column='description', keywords_list=['建议'])
+    wj = WordnetJson(data, data_name=ac_id, class_column='icontitle', description_column='description', keywords_list=['建议'])
 
     graph_json = wj.gen_wordnet_json(seg_flags=['n', 'a'], stopwords_relative_pos='lib/stopwords_biaodian.txt')
 
