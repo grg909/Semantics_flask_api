@@ -17,10 +17,16 @@ import matplotlib
 import networkx as nx
 from jieba import posseg as pseg
 import numpy as np
-import pickle
 import csv
+import jieba
 
 # TODO ： 1. 容错机制 2. 可读性 3. 性能优化
+
+try:
+    jieba.enable_parallel()
+    print('启动多进程加速。。。')
+except:
+    print('不支持多进程加速，跳过。。。')
 
 
 class WordnetJson:
@@ -59,7 +65,7 @@ class WordnetJson:
         self.__keywords_dict = {}
         self.__keywords_nor = {}
 
-    def __iter_segment(self, flags):
+    def _iter_segment(self, flags):
         """
         描述分词，用‘ ’分隔，去除描述分词中和类别冲突的词，并用其类别词连接作为第一个词。生成器
         :param flags: 指定保留的分词flags列表
@@ -76,7 +82,7 @@ class WordnetJson:
             yield seg_list
 
     @staticmethod
-    def __iter_remove_stopwords(seg_list, stopwords_line):
+    def _remove_stopwords(seg_list, stopwords_line):
         """
         读取停用词列表，去除输入分词字符串中的停用词。生成器
         :param seg_list: 分词结果字符串
@@ -103,10 +109,9 @@ class WordnetJson:
             raise e
 
         with_class_data = []
-        seg_list = self.__iter_segment(seg_flags)
-        seg_rm = self.__iter_remove_stopwords(seg_list, stopwords_line)
-        for line in seg_rm:
-            with_class_data.append(line)
+        seg_list = self._iter_segment(seg_flags)
+        for seg in seg_list:
+            with_class_data.append([i for i in self._remove_stopwords(seg, stopwords_line)])
 
         return with_class_data
 

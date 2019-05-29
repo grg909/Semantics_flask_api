@@ -29,7 +29,7 @@ class MysqlConn:
 @app.route('/get_json')
 def get_json():
     class_threshold = request.args.get('class_threshold')
-    word_threshold = request.args.get('word_threshold')
+    word_threshold = request.args.get('wo   rd_threshold')
     ac_id = request.args.get('ac_id')
 
     sql = "SELECT fy_icon.icontitle, fy_proposal.description FROM fy_proposal LEFT JOIN fy_icon on " \
