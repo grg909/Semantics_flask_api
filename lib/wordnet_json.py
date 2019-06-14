@@ -17,7 +17,6 @@ import matplotlib
 import networkx as nx
 from jieba import posseg as pseg
 import numpy as np
-import csv
 import jieba
 import pickle
 
@@ -426,7 +425,7 @@ class WordnetJson:
         :return: 生成图的json数据
         """
 
-        # 缓存过去分词结果，加快响应速度
+        # 缓存过去分词结果，仅计算差异部分，加快响应速度
         try:
             last_shape = pickle.load(
                 open('data/{}_data_shape.pkl'.format(self.data_name), "rb"))
