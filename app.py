@@ -25,11 +25,26 @@ def get_json():
     list_data = np.array(data)
     data = pd.DataFrame(list_data, columns=['icontitle', 'description'])
 
-    wj = WordnetJson(data, data_name=ac_id, class_column='icontitle', description_column='description', keywords_list=['建议'])
+    wj = WordnetJson(
+        data,
+        data_name=ac_id,
+        class_column='icontitle',
+        description_column='description',
+        keywords_list=['建议'])
     if auto == 1:
-        graph_json = wj.gen_wordnet_json(seg_flags=['n', 'a'], stopwords_relative_pos='lib/hlt_stop_words.txt')
+        graph_json = wj.gen_wordnet_json(
+            seg_flags=[
+                'n',
+                'a'],
+            stopwords_relative_pos='lib/hlt_stop_words.txt')
     else:
-        graph_json = wj.gen_wordnet_json(seg_flags=['n', 'a'], stopwords_relative_pos='lib/hlt_stop_words.txt', word_threshold=word_threshold, class_threshold=class_threshold)
+        graph_json = wj.gen_wordnet_json(
+            seg_flags=[
+                'n',
+                'a'],
+            stopwords_relative_pos='lib/hlt_stop_words.txt',
+            word_threshold=word_threshold,
+            class_threshold=class_threshold)
 
     return json.dumps(graph_json)
 
@@ -40,7 +55,12 @@ def input_page():
     class_threshold = request.form['class_threshold']
     ac_id = request.form['ac_id']
     auto = 0 if request.form.get('auto_mode') is None else 1
-    return render_template('collection_index.html', ac_id=ac_id, word_threshold=word_threshold, class_threshold=class_threshold, auto=auto)
+    return render_template(
+        'collection_index.html',
+        ac_id=ac_id,
+        word_threshold=word_threshold,
+        class_threshold=class_threshold,
+        auto=auto)
 
 
 @app.route('/')
