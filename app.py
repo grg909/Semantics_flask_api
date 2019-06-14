@@ -2,9 +2,11 @@ from flask import render_template, request
 from database import MysqlConn
 import json
 from .lib.wordnet_json import WordnetJson
-from . import app
 import numpy as np
 import pandas as pd
+from flask import Flask
+
+app = Flask(__name__)
 
 
 @app.route('/get_json')
