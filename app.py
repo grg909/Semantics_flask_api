@@ -1,5 +1,5 @@
 from flask import render_template, request
-from database import MysqlConn
+from .database import MysqlConn
 import json
 from .lib.wordnet_json import WordnetJson
 import numpy as np
