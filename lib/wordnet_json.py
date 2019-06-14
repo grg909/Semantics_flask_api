@@ -26,7 +26,7 @@ import pickle
 try:
     jieba.enable_parallel()
     print('启动多进程加速。。。')
-except:
+except BaseException:
     print('不支持多进程加速，跳过。。。')
 
 
@@ -53,7 +53,7 @@ class WordnetJson:
         self.keywords_list = keywords_list
 
         # 词频大小标准化时的调整参数，使类别词节点与分词节点明显区分
-        self.class_nor_coefficient = 80
+        self.class_nor_coefficient = 60
         self.class_nor_offset = 0.3
         self.word_nor_coefficient = 35
         self.word_nor_offset = 0.15
@@ -85,6 +85,23 @@ class WordnetJson:
             yield seg_list
 
     @staticmethod
+    def _iter_segment_customize_data(flags, customize_data):
+        """
+        同上，支持传入自定义数据
+        :param flags: 指定保留的分词flags列表
+        :return: 返回一个可以输出每行分词结果（字符串）的迭代器
+        """
+        for row in customize_data.itertuples(index=False):
+            seg_list = []
+            description_seg = pseg.cut(row[1].replace('\r\n', ''))
+            words_seg = [
+                word for word,
+                flag in description_seg if flag in flags and word != row[0] and len(word) > 1]
+            seg_list.append(row[0])
+            seg_list.extend(words_seg)
+            yield seg_list
+
+    @staticmethod
     def _remove_stopwords(seg_list, stopwords_line):
         """
         读取停用词列表，去除输入分词字符串中的停用词。生成器
@@ -96,7 +113,12 @@ class WordnetJson:
             if word not in stopwords_line:
                 yield word
 
-    def seg_and_rm_stopwords(self, seg_flags, stopwords_relative_pos, enable_pickle=True):
+    def seg_and_rm_stopwords(
+            self,
+            seg_flags,
+            stopwords_relative_pos,
+            customize_data=None,
+            enable_pickle=True):
         """
         分词和去除停用词
         :param seg_flags: 指定保留的分词flags列表
@@ -112,12 +134,15 @@ class WordnetJson:
             raise e
 
         with_class_data = []
-        seg_list = self._iter_segment(seg_flags)
+        seg_list = self._iter_segment(
+            seg_flags) if customize_data is None else self._iter_segment_customize_data(seg_flags, customize_data)
         for seg in seg_list:
-            with_class_data.append([i for i in self._remove_stopwords(seg, stopwords_line)])
+            with_class_data.append(
+                [i for i in self._remove_stopwords(seg, stopwords_line)])
 
         if enable_pickle:
-            pickle.dump(with_class_data, open('data/{}.pkl'.format(self.data_name), 'wb'))
+            pickle.dump(with_class_data, open(
+                'data/{}.pkl'.format(self.data_name), 'wb'))
 
         return with_class_data
 
@@ -165,7 +190,7 @@ class WordnetJson:
             min_count = min(class_cleaned.values())
         except Exception as e:
             print('类别数据为空')
-            raise e
+            return class_cleaned
 
         try:
             for class_name, count in class_cleaned.items():
@@ -173,7 +198,7 @@ class WordnetJson:
                     self.class_nor_offset + ((float(count) - min_count) / float(max_count - min_count)))
         except Exception as ex:
             print('类别数据标准化出错')
-            raise ex
+            return class_cleaned
 
         return class_cleaned
 
@@ -188,7 +213,7 @@ class WordnetJson:
             min_count = min(word_pool.values())
         except Exception as e:
             print('分词数据为空')
-            raise e
+            return word_pool
 
         try:
             for word_name, count in word_pool.items():
@@ -196,7 +221,7 @@ class WordnetJson:
                     (float(count) - min_count) / float(max_count - min_count)))
         except Exception as ex:
             print('分词数据标准化出错')
-            raise ex
+            return word_pool
 
         return word_pool
 
@@ -265,7 +290,6 @@ class WordnetJson:
                 for keywords in self.__keywords_existed:
                     if word_pool_nor[keywords] < self.class_nor_offset:
                         word_pool_nor[keywords] += self.class_nor_offset
-
 
         return word_pool_nor
 
@@ -401,9 +425,26 @@ class WordnetJson:
         :param class_threshold: 类别频率阈值
         :return: 生成图的json数据
         """
+
+        # 缓存过去分词结果，加快响应速度
         try:
-            with_class_list = pickle.load(open('data/{}.pkl'.format(self.data_name), "rb"))
-        except:
+            last_shape = pickle.load(
+                open('data/{}_data_shape.pkl'.format(self.data_name), "rb"))
+            print(self.data.shape[0], last_shape)
+            if self.data.shape[0] != last_shape:
+                pickle.dump(self.data.shape[0], open(
+                    'data/{}_data_shape.pkl'.format(self.data_name), 'wb'))
+                with_class_list = pickle.load(
+                    open('data/{}.pkl'.format(self.data_name), "rb"))
+                new_data_word_list = self.seg_and_rm_stopwords(
+                    seg_flags, stopwords_relative_pos, customize_data=self.data[last_shape:], enable_pickle=False)
+                with_class_list.extend(new_data_word_list)
+            else:
+                with_class_list = pickle.load(
+                    open('data/{}.pkl'.format(self.data_name), "rb"))
+        except BaseException:
+            pickle.dump(self.data.shape[0], open(
+                'data/{}_data_shape.pkl'.format(self.data_name), 'wb'))
             with_class_list = self.seg_and_rm_stopwords(
                 seg_flags, stopwords_relative_pos)
 
@@ -418,15 +459,3 @@ class WordnetJson:
         graph_json = self.export_json(class_word_pool, total_dict)
 
         return graph_json
-
-    def dict_to_csv(self, dict_data):
-        """
-
-        :param dict:
-        :return:
-        """
-        with open('record.csv', 'wb', newline='') as f:
-            w = csv.writer(f)
-            w.writerows(dict_data.items())
-
-

@@ -21,7 +21,7 @@
             var app = {};
             option = null;
             myChart.showLoading();
-            $.getJSON('{{ url_for('get_json') }}?class_threshold={{ class_threshold }}&word_threshold={{ word_threshold }}&ac_id={{ ac_id }}', function (jsons) {
+            $.getJSON('{{ url_for('get_json') }}?class_threshold={{ class_threshold }}&word_threshold={{ word_threshold }}&ac_id={{ ac_id }}&auto={{ auto }}', function (jsons) {
 
                 var json = JSON.parse(jsons)
                 myChart.hideLoading();

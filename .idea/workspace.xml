@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d4e4bf0-c741-4271-bc0d-2d2a7a4a6abb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/52.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/66.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/66.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/70.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/70.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/79.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/81.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/data/81.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/wordnet_json.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/wordnet_json.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/collection_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/collection_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navigation.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigation.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/wordnet_json.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3024">
-              <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
+            <state relative-caret-position="180">
+              <caret line="441" column="17" lean-forward="true" selection-start-line="441" selection-start-column="17" selection-end-line="441" selection-end-column="17" />
               <folding>
                 <element signature="e#150#181#0" expanded="true" />
               </folding>
@@ -42,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="535">
+              <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -53,10 +62,15 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>total</find>
-      <find>_class_name</find>
       <find>collections</find>
       <find>itertools</find>
       <find>json</find>
@@ -85,6 +99,8 @@
       <find>pool</find>
       <find>class_word_pool</find>
       <find>print</find>
+      <find>None</find>
+      <find>ex</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,22 +112,23 @@
         <option value="$PROJECT_DIR$/0__init__.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/__init__.py" />
-        <option value="$PROJECT_DIR$/templates/navigation.html" />
         <option value="$PROJECT_DIR$/lib/snpy5.py" />
         <option value="$PROJECT_DIR$/lib/snpy6.py" />
-        <option value="$PROJECT_DIR$/templates/collection_index.html" />
         <option value="$PROJECT_DIR$/lib/pkuseg.py" />
         <option value="$PROJECT_DIR$/../xibei/dishes_seg.txt" />
         <option value="$PROJECT_DIR$/../xibei/seg_output.py" />
         <option value="$PROJECT_DIR$/../xibei/dishes_seg_altered.txt" />
         <option value="$PROJECT_DIR$/../xibei/stopwords.txt" />
-        <option value="$PROJECT_DIR$/lib/wordnet_json.py" />
+        <option value="$PROJECT_DIR$/templates/collection_index.html" />
+        <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/templates/navigation.html" />
+        <option value="$PROJECT_DIR$/lib/wordnet_json.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="953" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1057" />
   </component>
@@ -121,6 +138,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,7 +160,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -151,7 +168,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -165,7 +182,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Flask server.Flask">
+  <component name="RunManager" selected="Flask server.Flask (app.py)">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="semnetwork" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,7 +227,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Flask" type="Python.FlaskServer" nameIsGenerated="true">
+    <configuration name="Flask (app.py)" type="Python.FlaskServer" nameIsGenerated="true">
+      <option name="flaskDebug" value="true" />
       <module name="semnetwork" />
       <option name="target" value="D:\repo\citydna\semnetwork\app.py" />
       <option name="targetType" value="PATH" />
@@ -225,6 +243,10 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Flask server.Flask (app.py)" />
+      <item itemvalue="Python.seg_output" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.seg_output" />
@@ -293,12 +315,15 @@
       <workItem from="1558080860203" duration="2295000" />
       <workItem from="1559099231286" duration="285000" />
       <workItem from="1559099633697" duration="26000" />
-      <workItem from="1559099739789" duration="993000" />
+      <workItem from="1559099739789" duration="5067000" />
+      <workItem from="1560323978265" duration="1353000" />
+      <workItem from="1560329259719" duration="7142000" />
+      <workItem from="1560488983866" duration="4449000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="290843000" />
+    <option name="totallyTimeSpent" value="307861000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -313,12 +338,12 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12953092" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49785408" visible="true" weight="0.13272922" />
+      <window_info id="Structure" order="1" sideWeight="0.50214595" side_tool="true" weight="0.13272922" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.6180258" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.5804721" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.35193133" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -337,12 +362,12 @@
       <window_info anchor="right" id="Database" order="5" sideWeight="0.49892703" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13272922" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49785408" visible="true" weight="0.13272922" />
+      <window_info id="Structure" order="1" sideWeight="0.50214595" side_tool="true" visible="true" weight="0.13272922" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.2446352" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.5804721" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.35193133" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -352,7 +377,7 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" weight="0.31330472" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32939914" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.2167382" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.22424893" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.38412017" />
       <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="0" sideWeight="0.5032189" side_tool="true" weight="0.21321961" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -376,7 +401,8 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask Coverage Results" MODIFIED="1559100542211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/semnetwork$Flask.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1560397617324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/semnetwork$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1560493342165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/0__init__.py" />
@@ -430,13 +456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="68197" selection-start-line="68197" selection-end-line="68197" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/navigation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -495,18 +514,6 @@
     </entry>
     <entry file="file://$USER_HOME$/Desktop/备份/snpy5通用.py" />
     <entry file="file://$PROJECT_DIR$/lib/pkuseg.py" />
-    <entry file="file://$PROJECT_DIR$/templates/collection_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="79" column="33" lean-forward="true" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
-          <folding>
-            <element signature="e#2497#3098#0#HTML" />
-            <element signature="e#3167#3381#0#HTML" />
-            <element signature="e#3419#3899#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../FlaskApp/venv/Lib/site-packages/networkx/drawing/layout.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="793">
@@ -536,13 +543,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Industry_type_classifier/app2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-738">
-          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../Industry_type_classifier/app2.py" />
     <entry file="file://$PROJECT_DIR$/../Industry_type_classifier/find_features.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-153">
@@ -552,15 +553,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../Industry_type_classifier/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="205" lean-forward="true" selection-start-line="205" selection-end-line="205" />
+        <state relative-caret-position="7155">
+          <caret line="277" column="15" lean-forward="true" selection-start-line="277" selection-start-column="15" selection-end-line="277" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../seg_tool/seg_tool.py" />
+    <entry file="file://$PROJECT_DIR$/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../StreetInfo/make_excel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="999">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="24" />
+          <folding>
+            <element signature="e#136#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/collection_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/navigation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="535">
+          <caret line="27" column="33" lean-forward="true" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
@@ -569,8 +602,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/wordnet_json.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3024">
-          <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
+        <state relative-caret-position="180">
+          <caret line="441" column="17" lean-forward="true" selection-start-line="441" selection-start-column="17" selection-end-line="441" selection-end-column="17" />
           <folding>
             <element signature="e#150#181#0" expanded="true" />
           </folding>
